@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Uploader</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Upload up to 5 images</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" multiple accept=".jpg,.jpeg,.png">
+        <input type="submit" value="Upload">
+    </form>
+    {% if links %}
+    <h2>BBCode Links</h2>
+    <textarea id="bbcode" rows="10" cols="80">{% for link in links %}[img]{{ link }}[/img]
+{% endfor %}</textarea><br>
+    <button onclick="copyBBCode()">Copy</button>
+    {% endif %}
+<script>
+function copyBBCode() {
+    var copyText = document.getElementById("bbcode");
+    copyText.select();
+    document.execCommand("copy");
+}
+</script>
+</body>
+</html>
